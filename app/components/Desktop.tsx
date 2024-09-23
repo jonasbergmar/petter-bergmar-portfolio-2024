@@ -16,7 +16,11 @@ const Desktop = () => {
   const [isMediaPlayerOpen, setIsMediaPlayerOpen] = useState(false);
   const [isFolderOpen, setIsFolderOpen] = useState(false);
 
-  const [zIndices, setZIndices] = useState({ browser: 1, mediaPlayer: 1 }); // Track z-indices
+  const [zIndices, setZIndices] = useState({
+    browser: 1,
+    mediaPlayer: 1,
+    folder: 1,
+  }); // Track z-indices
 
   // Framer Motion animation variants for smooth loading
 
@@ -94,9 +98,9 @@ const Desktop = () => {
         <motion.div
           drag
           dragMomentum={false}
-          className="absolute left-4 top-44 m-4 mx-auto h-80 w-96 md:right-64 md:h-[400px] md:w-[400px]"
-          style={{ zIndex: zIndices.mediaPlayer }} // Set z-index for media player window
-          onMouseDown={() => bringToFront("mediaPlayer")} // Update z-index on mouse down
+          className="absolute left-4 top-64 m-4 mx-auto h-80 w-96 md:right-44 md:h-[400px] md:w-[400px]"
+          style={{ zIndex: zIndices.folder }} // Set z-index for media player window
+          onMouseDown={() => bringToFront("folder")} // Update z-index on mouse down
         >
           <Folder
             onClose={() => setIsFolderOpen(false)} // Close function
