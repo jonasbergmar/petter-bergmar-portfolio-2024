@@ -27,7 +27,8 @@ const Desktop = () => {
   const bringToFront = (windowType: "browser" | "mediaPlayer" | "folder") => {
     setZIndices((prev) => ({
       ...prev,
-      [windowType]: Math.max(prev.browser, prev.mediaPlayer) + 1, // Increment the z-index for the clicked window
+      // Calculate the maximum z-index among all windows and increment the clicked window's z-index
+      [windowType]: Math.max(prev.browser, prev.mediaPlayer, prev.folder) + 1,
     }));
   };
 
