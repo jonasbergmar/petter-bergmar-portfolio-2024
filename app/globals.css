@@ -1,3 +1,44 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.container {
+  position: relative;
+  width: 90vw;
+  height: 90vh;
+  max-width: 90vh;
+  max-height: 90vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 9px;
+}
+
+/* Scrollbar container */
+::-webkit-scrollbar {
+  width: 20px; /* Width of the scrollbar */
+  background-color: #9f9f9f;
+  /* Background color of the scrollbar */
+}
+
+/* Scrollbar thumb */
+::-webkit-scrollbar-thumb {
+  background-color: #6d6d6d; /* Color of the scrollbar thumb */
+  border-radius: 2px; /* Rounded corners */
+}
+
+/* Scrollbar thumb on hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #515151; /* Darker color on hover */
+}
+
+/* Scrollbar track */
+::-webkit-scrollbar-track {
+  background: #cecece; /* Color of the track */
+  border-radius: 2px; /* Rounded corners */
+}
+
+/* Hide horizontal scrollbar */
+::-webkit-scrollbar:horizontal {
+  display: none; /* Hides the horizontal scrollbar */
+}
