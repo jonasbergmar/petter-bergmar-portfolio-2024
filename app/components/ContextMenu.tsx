@@ -47,20 +47,20 @@ const ContextMenu: React.FC<ContextMenuProps> = ({
         onMouseEnter={() => setSubMenuVisible(true)}
         onMouseLeave={() => setSubMenuVisible(false)}
       >
-        <div className="flex items-center justify-between p-4 text-green-200 hover:bg-black/70">
+        <div className="flex items-center justify-between p-4 text-green-200 hover:bg-gray-500">
           Theme
           <div className="h-4 w-4 rotate-45 transform border-r border-t border-green-200" />
         </div>
         {subMenuVisible && (
           <ul
-            className="absolute left-full top-0 border border-x-green-200 bg-black shadow-lg"
+            className="border-green-2 absolute left-full top-0 border bg-black shadow-lg"
             style={{ width: "150px" }}
           >
             {themes.map((theme, index) => (
               <li
                 key={theme.name}
                 onClick={() => onThemeSelect(index)}
-                className="cursor-pointer p-4 text-green-200 hover:bg-black/70"
+                className="cursor-pointer p-4 text-green-200 hover:bg-gray-500"
               >
                 {theme.name}
               </li>
