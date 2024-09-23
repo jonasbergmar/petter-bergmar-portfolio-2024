@@ -40,11 +40,11 @@ const TopBar: React.FC = () => {
   return (
     <header className="absolute top-0 z-[999] w-full items-center bg-gray-950">
       <div className="flex h-11 items-center justify-between space-x-2 text-gray-100">
-        <div className="flex h-11 items-center border-r">
+        <div className="flex h-11 items-center">
           <p className="px-2 text-lg font-medium">Petter Bergmar</p>
         </div>
 
-        <div className="flex border-l">
+        <div className="flex">
           <div className="text-md font-regular flex h-11 items-center px-2 text-gray-100">
             {date}
           </div>
