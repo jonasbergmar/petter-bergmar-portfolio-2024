@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
-import WindowTopBar from "./WindowTopBar"; // Make sure to import this
+import WindowTopBar from "./WindowTopBar"; // Ensure this is imported
 
 type WindowProps = {
   title: string;
@@ -41,6 +41,11 @@ const Window: React.FC<WindowProps> = ({ title, onClose, children }) => {
     }
   }, []);
 
+  // Prevent touchmove event from bubbling up
+  const handleTouchMove = (event: React.TouchEvent) => {
+    event.stopPropagation();
+  };
+
   return (
     <section
       ref={containerRef}
@@ -48,7 +53,12 @@ const Window: React.FC<WindowProps> = ({ title, onClose, children }) => {
     >
       {showTopBar && <WindowTopBar title={title} onClose={onClose} />}{" "}
       {/* Render top bar */}
-      <div className="h-full w-full overflow-auto">{isVisible && children}</div>
+      <div
+        className="h-full w-full overflow-auto"
+        onTouchMove={handleTouchMove} // Prevent scrolling the window
+      >
+        {isVisible && children}
+      </div>
     </section>
   );
 };
