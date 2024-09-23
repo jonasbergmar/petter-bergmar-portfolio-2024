@@ -44,11 +44,11 @@ const TopBar: React.FC = () => {
           <p className="px-2 text-lg font-medium">Petter Bergmar</p>
         </div>
 
-        <div className="flex">
+        <div className="flex gap-1">
           <div className="text-md font-regular flex h-11 items-center px-2 text-gray-100">
             {date}
           </div>
-          <div className="text-md font-regular flex h-11 items-center border-l px-2 text-gray-100">
+          <div className="text-md font-regular flex h-11 items-center px-2 text-gray-100">
             {time}
           </div>
         </div>
