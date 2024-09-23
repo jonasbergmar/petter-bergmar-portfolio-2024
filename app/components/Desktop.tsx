@@ -16,20 +16,23 @@ const Desktop = () => {
   const [isMediaPlayerOpen, setIsMediaPlayerOpen] = useState(false);
   const [isFolderOpen, setIsFolderOpen] = useState(false);
 
+  // Track z-indices
   const [zIndices, setZIndices] = useState({
     browser: 1,
     mediaPlayer: 1,
     folder: 1,
-  }); // Track z-indices
+  });
 
-  // Framer Motion animation variants for smooth loading
-
+  // Adjust z-index of windows to bring the clicked one to the front
   const bringToFront = (windowType: "browser" | "mediaPlayer" | "folder") => {
-    setZIndices((prev) => ({
-      ...prev,
-      // Calculate the maximum z-index among all windows and increment the clicked window's z-index
-      [windowType]: Math.max(prev.browser, prev.mediaPlayer, prev.folder) + 1,
-    }));
+    setZIndices((prev) => {
+      // Find the current highest z-index across all windows
+      const maxZIndex = Math.max(...Object.values(prev));
+      return {
+        ...prev,
+        [windowType]: maxZIndex + 1, // Increment the z-index of the clicked window
+      };
+    });
   };
 
   return (
@@ -44,24 +47,24 @@ const Desktop = () => {
             name="Safari"
             onClick={() => {
               setIsBrowserOpen(true);
-              bringToFront("browser"); // Bring browser to front
-            }} // Open the browser window
+              bringToFront("browser"); // Bring browser to the front
+            }}
           />
           <ProgramShortcut
             logo="/vlc.png"
             name="VLC"
             onClick={() => {
               setIsMediaPlayerOpen(true);
-              bringToFront("mediaPlayer"); // Bring media player to front
-            }} // Open the media player window
+              bringToFront("mediaPlayer"); // Bring media player to the front
+            }}
           />
           <ProgramShortcut
             logo="/Folder.png"
             name="Folder"
             onClick={() => {
               setIsFolderOpen(true);
-              bringToFront("folder"); // Bring media player to front
-            }} // Open the media player window
+              bringToFront("folder"); // Bring folder to the front
+            }}
           />
         </div>
       </nav>
@@ -95,12 +98,13 @@ const Desktop = () => {
         </motion.div>
       )}
 
+      {/* Folder Window */}
       {isFolderOpen && (
         <motion.div
           drag
           dragMomentum={false}
           className="absolute left-4 top-64 m-4 mx-auto h-80 w-96 md:right-44 md:h-[400px] md:w-[400px]"
-          style={{ zIndex: zIndices.folder }} // Set z-index for media player window
+          style={{ zIndex: zIndices.folder }} // Set z-index for folder window
           onMouseDown={() => bringToFront("folder")} // Update z-index on mouse down
         >
           <Folder
