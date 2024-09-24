@@ -1,36 +1,34 @@
 "use client";
+
 import React, { useState, useRef, useEffect } from "react";
+import Image from "next/image";
 import ContextMenu from "./ContextMenu";
 
 export type Theme = {
   name: string;
-  backgroundColor: string;
+  backgroundImage: string;
 };
 
 const themes: Theme[] = [
   {
-    name: "Platinum Gray",
-    backgroundColor: "#C0C0C0",
+    name: "Macintosh XL",
+    backgroundImage: "/mac 1.png",
   },
   {
-    name: "Light Blue",
-    backgroundColor: "#A3C9F1",
+    name: "Macintosh 128K",
+    backgroundImage: "/mac 2.png",
   },
   {
-    name: "Beige",
-    backgroundColor: "#E0D0B0",
+    name: "Mac Plus",
+    backgroundImage: "/mac 3.png",
   },
   {
-    name: "Dark Gray",
-    backgroundColor: "#808080",
-  },
-  {
-    name: "Soft Green",
-    backgroundColor: "#98FB98",
+    name: "Gameboy",
+    backgroundImage: "/gameboy.png",
   },
 ];
 
-const Wallpaper: React.FC = () => {
+export default function Wallpaper() {
   const [currentTheme, setCurrentTheme] = useState<number>(0);
   const [contextMenuVisible, setContextMenuVisible] = useState<boolean>(false);
   const [contextMenuPosition, setContextMenuPosition] = useState<{
@@ -41,7 +39,9 @@ const Wallpaper: React.FC = () => {
   const wallpaperRef = useRef<HTMLDivElement>(null);
 
   const switchTheme = (index: number): void => {
-    setCurrentTheme(index);
+    if (index !== currentTheme) {
+      setCurrentTheme(index);
+    }
     setContextMenuVisible(false);
   };
 
@@ -72,13 +72,19 @@ const Wallpaper: React.FC = () => {
 
   return (
     <div
-      className="absolute h-screen w-full"
-      style={{
-        backgroundColor: theme.backgroundColor,
-      }}
+      className="relative h-screen w-full overflow-hidden"
       onContextMenu={handleContextMenu}
       ref={wallpaperRef}
     >
+      <Image
+        key={theme.backgroundImage}
+        src={theme.backgroundImage}
+        alt={theme.name}
+        layout="fill"
+        objectFit="cover"
+        priority
+      />
+
       <ContextMenu
         visible={contextMenuVisible}
         position={contextMenuPosition}
@@ -88,6 +94,4 @@ const Wallpaper: React.FC = () => {
       />
     </div>
   );
-};
-
-export default Wallpaper;
+}
