@@ -32,6 +32,7 @@ const Window: React.FC<WindowProps> = ({ title, onClose, children }) => {
       );
 
       return () => {
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         gsap.to(containerRef.current, {
           scale: 0.1,
           opacity: 0,
