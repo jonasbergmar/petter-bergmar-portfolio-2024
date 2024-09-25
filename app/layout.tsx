@@ -20,7 +20,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="overflow-hidden bg-black">{children}</body>
+      <body className="h-svh overflow-hidden bg-black">{children}</body>
     </html>
   );
 }
