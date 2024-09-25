@@ -11,20 +11,20 @@ export type Theme = {
 
 const themes: Theme[] = [
   {
-    name: "Macintosh XL",
-    backgroundImage: "/mac 1.png",
+    name: "Blue Macintosh",
+    backgroundImage: "/wallpaper blue.jpg",
   },
   {
-    name: "Macintosh 128K",
-    backgroundImage: "/mac 2.png",
+    name: "Green Macintosh",
+    backgroundImage: "/wallpaper green.jpg",
   },
   {
-    name: "Mac Plus",
-    backgroundImage: "/mac 3.png",
+    name: "Purple Macintosh",
+    backgroundImage: "/wallpape purple.jpg",
   },
   {
-    name: "Gameboy",
-    backgroundImage: "/gameboy.png",
+    name: "Rose Macintosh",
+    backgroundImage: "/wallpaper rose.jpg",
   },
 ];
 
@@ -72,7 +72,7 @@ export default function Wallpaper() {
 
   return (
     <div
-      className="relative h-screen w-full overflow-hidden"
+      className="relative h-svh w-full overflow-hidden"
       onContextMenu={handleContextMenu}
       ref={wallpaperRef}
     >
@@ -80,8 +80,8 @@ export default function Wallpaper() {
         key={theme.backgroundImage}
         src={theme.backgroundImage}
         alt={theme.name}
-        layout="fill"
-        objectFit="cover"
+        fill
+        style={{ objectFit: "cover" }}
         priority
       />
 
